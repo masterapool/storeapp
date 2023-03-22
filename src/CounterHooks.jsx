@@ -4,7 +4,7 @@ const CounterHooks = ({ initialCount }) => {
   const [count, setCount] = useState(initialCount);
   return (
     <div class="m-6">
-      <span class="text-3xl font-bold">Counter</span>
+      <span class="text-3xl font-bold">Counter lets see how</span>
       <div class="my-3 text-2xl">
         <button
           onClick={() => setCount((prevCount) => prevCount - 1)}
