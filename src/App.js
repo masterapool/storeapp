@@ -1,9 +1,5 @@
-import CounterHooks from "./CounterHooks";
-
 function App() {
-  return ( <div className="App">
-    <CounterHooks initialCount ={0}/>
-  </div> )
+  return null;
 }
 
 export default App;
