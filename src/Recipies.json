@@ -1,0 +1,51 @@
+[
+    {
+        "id": 1,
+        "name": "Plain Chicken",
+        "CookTime": "1:45",
+        "servings": 2,
+        "instructions": "1. Add salt and pepper \n 2. Cook chicken\n 3. Eat Chicken",
+        "Ingredients": [
+            {
+                "id": 1,
+                "name": "Chicken",
+                "amount": "2 kg"
+            },
+            {
+                "id": 2,
+                "name": "Salt",
+                "amount": "1 Tbs"
+            },
+            {
+                "id": 3,
+                "name": "Black Pepper",
+                "amount": "1 Ts"
+            }
+        ]
+    },
+
+    {
+        "id": 2,
+        "name": "Plain Pork",
+        "CookTime": "1:30",
+        "servings": 3,
+        "instructions": "1. Add salt and paprika \n 2. Cook pork \n 3. Eat Pork",
+        "Ingredients": [
+            {
+                "id": 1,
+                "name": "Pork",
+                "amount": "2 kg "
+            },
+            {
+                "id": 2,
+                "name": "Salt",
+                "amount": "1 Tbs "
+            },
+            {
+                "id": 3,
+                "name": "Paprika",
+                "amount": "1 Tbs"
+            }
+        ]
+    }
+]
