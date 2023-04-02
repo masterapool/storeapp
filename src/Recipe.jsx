@@ -12,9 +12,9 @@ const Recipe = (props) => {
       <div className="flex justify-between mb-4 pb-2 border-b-2">
         <h3 className="text-3xl font-bold">{name}</h3>
         <div className="text-white font-semibold">
-          <button 
-          className="bg-blue-600 px-2 py-1 mx-2 rounded-lg"
-          onClick={() => handleRecipeSelect(id)}
+          <button
+            className="bg-blue-600 px-2 py-1 mx-2 rounded-lg"
+            onClick={() => handleRecipeSelect(id)}
           >
             Edit
           </button>

@@ -11,10 +11,10 @@ const Recipeform = ({ recipe }) => {
 
   function handleIngredientChange(id, ingredient) {
     const newIngredients = [...recipe.ingredients];
-    const index = newIngredients.findIndex(i => i.id === id);
+    const index = newIngredients.findIndex((i) => i.id === id);
 
     newIngredients[index] = ingredient;
-    
+
     handleChange({ ingredients: newIngredients });
   }
 
