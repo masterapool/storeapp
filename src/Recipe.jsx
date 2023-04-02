@@ -3,7 +3,7 @@ import IngredientsList from './IngredientsList';
 import { RecipeContext } from './App';
 
 const Recipe = (props) => {
-  const { id, name, CookTime, servings, instructions, Ingredients } = props;
+  const { id, name, CookTime, servings, instructions, ingredients } = props;
 
   const { handleRecipeDelete, handleRecipeSelect } = useContext(RecipeContext);
 
@@ -41,7 +41,7 @@ const Recipe = (props) => {
       <div>
         <span className="font-bold">Ingredients:</span>
         <div className="ml-3 mt-2 ">
-          {<IngredientsList Ingredients={Ingredients} />}
+          {<IngredientsList ingredients={ingredients} />}
         </div>
       </div>
     </div>

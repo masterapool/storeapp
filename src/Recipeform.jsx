@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import IngredientForm from './IngredientForm';
+import { RecipeContext } from './App';
 
 const Recipeform = ({ recipe }) => {
+  const { handleRecipeChange } = useContext(RecipeContext);
+
+  function handleChange(changes) {
+    handleRecipeChange(recipe.id, { ...recipe, ...changes });
+  }
+
+  function handleIngredientChange(id, ingredient) {
+    const newIngredients = [...recipe.ingredients];
+    const index = newIngredients.findIndex(i => i.id === id);
+
+    newIngredients[index] = ingredient;
+    
+    handleChange({ ingredients: newIngredients });
+  }
+
   return (
     <div className="w-full border-2 m-3 rounded-lg h-[90vh]">
       <div className="flex justify-end pr-4 font-bold text-2xl">
@@ -16,6 +32,7 @@ const Recipeform = ({ recipe }) => {
           name="name"
           id="name"
           value={recipe.name}
+          onInput={(e) => handleChange({ name: e.target.value })}
           className="shadow border rounded outline-none p-1"
         />
         <label htmlFor="cooktime" className="font-bold">
@@ -26,6 +43,7 @@ const Recipeform = ({ recipe }) => {
           name="cooktime"
           id="cooktime"
           value={recipe.CookTime}
+          onInput={(e) => handleChange({ CookTime: e.target.value })}
           className="shadow border rounded outline-none p-1"
         />
         <label htmlFor="servings" className="font-bold">
@@ -37,6 +55,9 @@ const Recipeform = ({ recipe }) => {
           name="servings"
           id="servings"
           value={recipe.servings}
+          onInput={(e) =>
+            handleChange({ servings: parseInt(e.target.value) || ' ' })
+          }
           className="shadow border rounded outline-none p-1"
         />
         <label htmlFor="instructions" className="font-bold">
@@ -48,8 +69,9 @@ const Recipeform = ({ recipe }) => {
           cols="30"
           rows="10"
           value={recipe.instructions}
+          onInput={(e) => handleChange({ instructions: e.target.value })}
           className="shadow border rounded outline-none p-1 resize-none h-[200px]"
-        ></textarea>
+        />
       </div>
       <br />
       <label className="font-bold px-2">Ingredients</label>
@@ -57,13 +79,13 @@ const Recipeform = ({ recipe }) => {
         <div>Name</div>
         <div>Amount</div>
         <div></div>
-        {recipe.Ingredients.map(ingredient => (
-          <IngredientForm 
-          key={ingredient.id}
-          ingredient={ingredient}
+        {recipe.ingredients.map((ingredient) => (
+          <IngredientForm
+            key={ingredient.id}
+            handleIngredientChange={handleIngredientChange}
+            ingredient={ingredient}
           />
         ))}
-        
       </div>
       <div className="mt-4 text-center">
         <button className="bg-blue-600 px-2 py-2 mx-3 rounded-lg font-bold text-white">

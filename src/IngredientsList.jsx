@@ -2,8 +2,8 @@ import React from 'react';
 
 import Ingredient from './Ingredient';
 
-const IngredientsList = ({ Ingredients }) => {
-  const ingredientsEl = Ingredients.map((ingredient) => {
+const IngredientsList = ({ ingredients }) => {
+  const ingredientsEl = ingredients.map((ingredient) => {
     return <Ingredient key={ingredient.id} {...ingredient} />;
   });
 

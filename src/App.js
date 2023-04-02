@@ -8,7 +8,6 @@ export const RecipeContext = React.createContext();
 const LOCAL_STORAGE_KEY = 'pipeReact.recipes';
 
 function App() {
-
   const [recipes, setRecipes] = useState(() => {
     const recipeJSON = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (recipeJSON == null) {
@@ -18,9 +17,11 @@ function App() {
     }
   });
 
-  const [selectedRecipeId, setSelectedRecipeId] = useState()
+  const [selectedRecipeId, setSelectedRecipeId] = useState();
 
-  const selectedRecipe = recipes.find(recipe => recipe.id === selectedRecipeId)
+  const selectedRecipe = recipes.find(
+    (recipe) => recipe.id === selectedRecipeId
+  );
 
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes));
@@ -29,12 +30,12 @@ function App() {
   const recipeContextValue = {
     handleRecipeAdd,
     handleRecipeDelete,
-    handleRecipeSelect
+    handleRecipeSelect,
+    handleRecipeChange,
   };
 
-
-  function handleRecipeSelect(id){
-    setSelectedRecipeId(id)
+  function handleRecipeSelect(id) {
+    setSelectedRecipeId(id);
   }
 
   function handleRecipeAdd() {
@@ -44,10 +45,19 @@ function App() {
       CookTime: '1:00',
       servings: 1,
       instructions: 'Instr',
-      Ingredients: [{ id: v4(), name: 'Name', amount: '1 Tbs' }],
+      ingredients: [{ id: v4(), name: 'Name', amount: '1 Tbs' }],
     };
 
     setRecipes([...recipes, newRecipe]);
+  }
+
+  function handleRecipeChange(id, recipe) {
+    const newRecipes = [...recipes];
+    const index = newRecipes.findIndex((r) => r.id === id);
+
+    newRecipes[index] = recipe;
+
+    setRecipes(newRecipes);
   }
 
   function handleRecipeDelete(id) {
@@ -57,7 +67,8 @@ function App() {
     <RecipeContext.Provider value={recipeContextValue}>
       <div className="flex justify-evenly w-[80%] mx-auto">
         <RecipeList recipes={recipes} />
-        {selectedRecipe && <Recipeform recipe={selectedRecipe}/>}
+
+        {selectedRecipe && <Recipeform recipe={selectedRecipe} />}
       </div>
     </RecipeContext.Provider>
   );
