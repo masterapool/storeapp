@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import IngredientForm from './IngredientForm';
 import { RecipeContext } from './App';
+import { v4 } from 'uuid';
 
 const Recipeform = ({ recipe }) => {
-  const { handleRecipeChange } = useContext(RecipeContext);
+  const { handleRecipeChange, handleRecipeSelect } = useContext(RecipeContext);
 
   function handleChange(changes) {
     handleRecipeChange(recipe.id, { ...recipe, ...changes });
@@ -18,10 +19,29 @@ const Recipeform = ({ recipe }) => {
     handleChange({ ingredients: newIngredients });
   }
 
+  function handleIngredientAdd(){
+    const newIngredient = {
+       id: v4(), name: '', amount: '' 
+    }
+
+    handleChange({ ingredients: [...recipe.ingredients, newIngredient]})
+  }
+
+  function handleIngredientDelete(id){
+    handleChange({
+      ingredients: recipe.ingredients.filter(i => i.id !== id)
+    })
+  }
+
   return (
     <div className="w-full border-2 m-3 rounded-lg h-[90vh]">
       <div className="flex justify-end pr-4 font-bold text-2xl">
-        <button className="hover:text-3xl">&times;</button>
+        <button 
+        className="hover:text-3xl"
+        onClick={() => handleRecipeSelect(undefined)}
+        >
+          &times;
+        </button>
       </div>
       <div className="grid grid-cols-[auto_1fr] gap-y-2 gap-x-2 px-2">
         <label htmlFor="name" className="font-bold">
@@ -83,12 +103,16 @@ const Recipeform = ({ recipe }) => {
           <IngredientForm
             key={ingredient.id}
             handleIngredientChange={handleIngredientChange}
+            handleIngredientDelete={handleIngredientDelete}
             ingredient={ingredient}
           />
         ))}
       </div>
       <div className="mt-4 text-center">
-        <button className="bg-blue-600 px-2 py-2 mx-3 rounded-lg font-bold text-white">
+        <button 
+        className="bg-blue-600 px-2 py-2 mx-3 rounded-lg font-bold text-white"
+        onClick={() => handleIngredientAdd()}
+        >
           Add Ingredients
         </button>
       </div>

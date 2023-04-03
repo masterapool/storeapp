@@ -1,7 +1,7 @@
 import React from 'react';
 
 const IngredientForm = (props) => {
-  const { ingredient, handleIngredientChange } = props;
+  const { ingredient, handleIngredientChange, handleIngredientDelete } = props;
 
   function handleIChange(changes) {
     handleIngredientChange(ingredient.id, { ...ingredient, ...changes });
@@ -21,7 +21,10 @@ const IngredientForm = (props) => {
         onInput={e => handleIChange({ amount: e.target.value })}
         value={ingredient.amount}
       />
-      <button className="bg-red-600 text-xl px-2 text-white rounded-md">
+      <button 
+      className="bg-red-600 text-xl px-2 text-white rounded-md"
+      onClick={() => handleIngredientDelete(ingredient.id)}
+      >
         &times;
       </button>
     </>
