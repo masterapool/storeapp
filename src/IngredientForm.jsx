@@ -12,18 +12,18 @@ const IngredientForm = (props) => {
       <input
         type="text"
         className="shadow border rounded outline-none p-1"
-        onChange={e => handleIChange({ name: e.target.value })}
+        onChange={(e) => handleIChange({ name: e.target.value })}
         value={ingredient.name}
       />
       <input
         type="text"
         className="shadow border rounded outline-none p-1"
-        onInput={e => handleIChange({ amount: e.target.value })}
+        onInput={(e) => handleIChange({ amount: e.target.value })}
         value={ingredient.amount}
       />
-      <button 
-      className="bg-red-600 text-xl px-2 text-white rounded-md"
-      onClick={() => handleIngredientDelete(ingredient.id)}
+      <button
+        className="bg-red-600 text-xl px-2 text-white rounded-md"
+        onClick={() => handleIngredientDelete(ingredient.id)}
       >
         &times;
       </button>

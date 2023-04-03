@@ -19,26 +19,28 @@ const Recipeform = ({ recipe }) => {
     handleChange({ ingredients: newIngredients });
   }
 
-  function handleIngredientAdd(){
+  function handleIngredientAdd() {
     const newIngredient = {
-       id: v4(), name: '', amount: '' 
-    }
+      id: v4(),
+      name: '',
+      amount: '',
+    };
 
-    handleChange({ ingredients: [...recipe.ingredients, newIngredient]})
+    handleChange({ ingredients: [...recipe.ingredients, newIngredient] });
   }
 
-  function handleIngredientDelete(id){
+  function handleIngredientDelete(id) {
     handleChange({
-      ingredients: recipe.ingredients.filter(i => i.id !== id)
-    })
+      ingredients: recipe.ingredients.filter((i) => i.id !== id),
+    });
   }
 
   return (
     <div className="w-full border-2 m-3 rounded-lg h-[90vh]">
       <div className="flex justify-end pr-4 font-bold text-2xl">
-        <button 
-        className="hover:text-3xl"
-        onClick={() => handleRecipeSelect(undefined)}
+        <button
+          className="hover:text-3xl"
+          onClick={() => handleRecipeSelect(undefined)}
         >
           &times;
         </button>
@@ -109,9 +111,9 @@ const Recipeform = ({ recipe }) => {
         ))}
       </div>
       <div className="mt-4 text-center">
-        <button 
-        className="bg-blue-600 px-2 py-2 mx-3 rounded-lg font-bold text-white"
-        onClick={() => handleIngredientAdd()}
+        <button
+          className="bg-blue-600 px-2 py-2 mx-3 rounded-lg font-bold text-white"
+          onClick={() => handleIngredientAdd()}
         >
           Add Ingredients
         </button>
